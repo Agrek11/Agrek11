@@ -1,6 +1,6 @@
 # Hi, I'm Abhi
 
-Senior software engineer based in Bengaluru, ~7 years across backend, distributed systems, and cloud platform engineering. Senior Software Engineer at Guidewire today; previously 6 years at Cisco (Grade 8 / Senior Software Developer at exit).
+Senior software engineer based in Bengaluru, ~7 years across backend, distributed systems, and cloud platform engineering. Currently building **software supply chain security** infrastructure as a Senior Software Engineer at Guidewire; previously 6 years at Cisco (Grade 8 / Senior Software Developer at exit).
 
 Active across two tracks on personal time:
 
@@ -70,7 +70,15 @@ A personal product I use daily: a chess opening repertoire trainer with integrat
 
 ## What I do day-to-day
 
-**Now.** Go-based cloud platform work — Kafka authentication migration from mTLS to AWS-IAM (SASL/OAUTHBEARER) across a multi-region production cluster, multi-account IAM design, custom franz-go SASL mechanism, cross-team rollout coordination.
+**Now.** Software supply chain security engineering — designing and shipping the platform that secures every container image flowing through our CI/CD pipeline, and the deploy-time gate that decides whether each image is allowed to run.
+
+- **Build-time attestation** — SBOM generation (CycloneDX), SLSA provenance signed with Sigstore + AWS KMS, in-toto attestations published end-to-end through the build pipeline.
+- **Supply chain graph** — artifacts ingested into [GUAC](https://github.com/guacsec/guac) (the OWASP graph for supply chain), served via Go APIs over PostgreSQL with per-tenant isolation.
+- **Deploy-time enforcement** — Kubernetes admission webhooks ([jsPolicy](https://github.com/loft-sh/jspolicy) → [Kyverno](https://github.com/kyverno/kyverno) migration in progress) that deny deployments based on CVE severity, missing provenance, unsigned artifacts, and license / compliance policy.
+- **Policy lifecycle** — policy CRUD + evaluation hot path in Go, DynamoDB for storage, Kafka for events, Valkey caching for low-latency admission decisions.
+- **Identity hardening** — cross-cutting Kafka authentication migration from mTLS to AWS IAM (SASL/OAUTHBEARER) across a multi-region production cluster: custom franz-go SASL mechanism, multi-account IAM design, cross-team rollout coordination.
+
+Stack on this work: Go on EKS, AWS (KMS, S3, SQS, RDS/PostgreSQL, DynamoDB, MSK), Sigstore, GUAC, CycloneDX, in-toto, SLSA, jsPolicy/Kyverno.
 
 **Before.** ~6 years at Cisco, last as Senior Software Developer (Grade 8). Led a small backend team owning Spring Boot microservices and distributed components across multiple AWS regions. Highlights:
 
@@ -93,7 +101,8 @@ A personal product I use daily: a chess opening repertoire trainer with integrat
 | Infra | **Kubernetes**, Docker, **Terraform**, Helm, CI/CD (Jenkins, GitHub Actions) |
 | Data | PostgreSQL, MySQL, Oracle, Cassandra, DynamoDB, Elasticsearch, Redis (cache / pub-sub / streams / sentinel) |
 | Observability | CloudWatch, ELK |
-| Confidential computing (current focus) | AMD SEV-SNP, Confidential Containers, Kata, Trustee/KBS, mkosi, attestation flows (AMD VLEK→ASK→ARK) |
+| Software supply chain security (current day-job focus) | Sigstore, SLSA provenance, in-toto attestations, CycloneDX SBOMs, GUAC, AWS KMS signing, K8s admission webhooks (jsPolicy, Kyverno), policy-as-code, CVE-driven deploy gating |
+| Confidential computing (active personal focus) | AMD SEV-SNP, Confidential Containers, Kata, Trustee/KBS, mkosi, attestation flows (AMD VLEK→ASK→ARK) |
 | AI / ML (active building) | Python · PyTorch · HuggingFace `transformers` / `peft` / `trl` / `datasets` / `accelerate` · vLLM · LangChain · RAG architectures · LLM fine-tuning + distillation · evaluation harnesses (RAGAS, W&B, MLflow) · ReAct / tool-using agents · Older: TensorFlow, Keras (Cisco-era ML pipelines on Docker + K8s) |
 
 ---
