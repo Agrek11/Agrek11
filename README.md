@@ -1,4 +1,4 @@
-# Hi, I'm Abhi
+# Hi, I'm Abhishek Agrawal
 
 Senior software engineer based in Bengaluru, ~7 years across backend, distributed systems, and cloud platform engineering. Currently building **software supply chain security** infrastructure as a Senior Software Engineer at Guidewire; previously 6 years at Cisco (Grade 8 / Senior Software Developer at exit).
 
